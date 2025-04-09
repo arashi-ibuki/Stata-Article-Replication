@@ -1,0 +1,48 @@
+-Why use Randomization Tests?
+-The principle of Randomization Tests
+-Analysis of Model Results
+
+    1. Why use Randomization Tests?
+
+    First, detect discontinuities around statistical thresholds. The study needs to confirm whether there is an abnormal clustering 
+of test statistics around the traditional statistical significance threshold (such as 1.96 corresponding to the 5% significance level), 
+which may be caused by p-hacking (adjusting the analysis strategy to make the results significant) or publication bias (publishing only
+significant results).
+
+    Second, minimize hypothesis dependence. The core advantage of this method is that it has very few assumptions and only requires 
+that the probability of the test statistic appearing above and below the threshold should be equal in a sufficiently small window. 
+If a significant probability difference is observed, it can be attributed to p-hacking or publication bias, rather than the distribution 
+characteristics of the data itself.
+
+    2. The principle of Randomization Tests
+
+    The core principle of Randomization Tests is based on continuity assumption and binomial test:
+
+    First, continuity assumption: Assume that for any research method, the true distribution of the z statistic is continuous and infinitely
+differentiable (following the framework of Andrews & Kasy, 2019). Therefore, in the absence of p-hacking or publication bias, the z-statistic
+distribution near the threshold (such as 1.96±h) should be smooth, without significant probability jumps.
+
+    Second,binomial distribution test. Steps are: Define the window centered on the significance threshold, set the window with half-width h 
+(such as h=0.5 corresponds to 1.46-2.46); count the number of tests N in the window, and the number of significant tests k in it; do one-sided p
+test (since publication bias usually manifests itself as "biased towards significant results", it is only necessary to test whether the proportion
+of significant tests is significantly higher than 50%).
+
+    Core logic
+If the observed significant test proportion k/N is much higher than 50%, and the one-sided p value after the binomial distribution test is less than
+the critical value (such as 0.05), it indicates that there is a discontinuity caused by p-hacking or publication bias.
+
+
+    3.Analysis of Randomization Tests Output Chart Results
+
+    Main Results (Taking 5% Significance Threshold as an Example)
+    IV and DID Methods: Near the threshold of 1.96, the significant proportion of IV test is 53.9%, and DID is 53.0%, both significantly higher than 50%
+(one-sided p values ​​are 0.002 and 0.015, respectively), indicating that these two methods have obvious clustering near the threshold, supporting the existence
+of p-hacking or publication bias.
+    RCT and RDD Methods: The significant proportion of RCT is 46.7%, and RDD is 47.2%, which is not significantly different from 50% (one-sided p values ​​are both
+greater than 0.9), indicating that the test distribution of these two methods is closer to the natural continuous distribution, and the degree of p-hacking is lower.
+
+    *Effect of window width: Even if the window width is reduced (such as h=0.1 or h=0.05), the significant proportions of IV and DID are still significantly higher 
+than 50%, while the differences between RCT and RDD are not significant, and the results are robust.
+Interdisciplinary comparison.
+
+//Above talk is based on the article.
