@@ -1,0 +1,51 @@
+-Why use Amount of Distortion?
+-Principle of Amount of Distortion
+-Analysis of test results
+
+  1. Why use Amount of Distortion?
+
+  A way to quantify the degree of publication bias: When studying the p-hacking and publication bias problems of paper data, we need a method to quantify the degree of 
+publication bias. Previous methods may focus on detecting discontinuities near the threshold, controlling author and article characteristics, or constructing counterfactual
+distributions, but do not directly measure the difference in the probability of publication between significant and non-significant results. The Amount of Distortion method
+provides us with an intuitive indicator to assess the severity of publication bias under different research methods by measuring the relative publication probability of 
+significant results relative to non-significant results, so as to have a more comprehensive understanding of the problems in the research field.
+
+
+  2. Principle of Amount of Distortion
+
+  This method is based on the measurement framework of Andrews and Kasy (2019), and its core principles are as follows:
+
+  Definition of publication bias: Publication bias exists when the probability of publication of a research result is a function of its statistical significance. In other words, 
+if significant results are more likely to be published than non-significant results, then publication bias exists.
+  Distribution assumptions: This method makes distribution assumptions about the effect size of the sample, assuming that there is no difference in the association between effect
+size estimates and small standard errors, and assuming that the underlying effect size follows a generalized t distribution.
+  Relative publication probability: The conditional publication probability is calculated by applying a step function at the significance threshold. Specifically, the relative
+publication probability of statistically significant results and statistically insignificant results is compared. If the publication probability of significant results and 
+insignificant results is the same, then the publication bias is low; conversely, if the publication probability of significant results is much higher than that of insignificant 
+results, then the publication bias is high.
+
+  3. Analysis of test results
+
+  A. Comparison of significant and insignificant results at the 5% significance level:
+
+  In the IV literature, the probability of publication of statistically insignificant results is only 21.4% of that of significant results, that is, the probability of 
+publication of significant IV results is almost 5 times that of insignificant results.
+  In the DID literature, the probability of publication of statistically significant results is 4.2 times that of insignificant results.
+  For RCT, significant results are 1.9 times more likely to be published than non-significant results.
+  For RDD, significant results are 2.8 times more likely to be published than non-significant results.
+  All of these estimates are statistically significant at the 1% level, indicating that there is significant publication bias across research methods.
+
+  B. Differentiating between different significance levels (one star, two stars, and three stars)
+
+  For DID, significant results are 2.6 times, 4.0 times, and 5.5 times more likely to be published than non-significant results at the 10%, 5%, and 1% significance levels, respectively.
+  For IV, the corresponding folds are 3.5 times, 5.2 times, and 6.3 times, respectively.
+  For RDD, they are relatively small, 2.2 times, 2.9 times, and 3.3 times, respectively.
+  RCT performs uniquely and relatively well, with significant results at 10%, 5%, and 1% significance levels being 1.7 times, 2.2 times, and 2.0 times more likely to be published than 
+non-significant results, respectively.
+
+  C. Overall pattern: It can be seen that regardless of the research method, there are obvious differences in the probability of publication of statistically significant results 
+and non-significant results, among which the differences in IV and DID are the most obvious, while the differences in RCT are relatively small, indicating that RCT is relatively 
+less affected by publication bias.
+
+
+//All the discussion is basedon original article.
