@@ -1,0 +1,69 @@
+-Why use the Caliper Test?
+-Principle of Caliper Test
+-Analysis of test result
+
+
+  1. Why use the Caliper Test?
+  
+  To control author and article characteristics: Compared with previous methods, the Caliper Test can control the characteristics of authors and articles. 
+When studying the p-hacking problem, editors and reviewers may have different preferences for null results for different methods, and the degree of p-hacking
+of different methods may be related to the type of authors using the method. By adding author characteristics and article-related indicator variables to the model,
+we can better identify the results that are truly caused by p-hacking rather than interference from other factors.
+
+  To solve the interpretation problem of clustering near threshold: Clustering near the statistical threshold may reflect the researcher's prior knowledge of the 
+sample size required to obtain a critically significant estimate. However, in this study, since the sample size of RCT studies is usually smaller than other methods, 
+especially smaller than the DID method, if the clustering is caused by prior knowledge and sample size calculation, then the clustering in the RCT sample should be the
+most obvious, but this is not the case. Therefore, this method can exclude this interference factor to a certain extent and identify p-hacking more accurately.
+
+  2. Principle of Caliper Test
+
+  Model setting: Analyze by estimating the following equation:(For github format, no equation here, but we can talk about the variables used)
+
+  (Significant_{ij}) is an indicator variable indicating whether test i is statistically significant for a given threshold in journal j. 
+  (Phi) is the cumulative distribution function of standard normal distribution.
+  (alpha) is the intercept term. (beta_j) represents the journal fixed effect. 
+  (X_{ij}) is a vector that includes, in addition to indicator variables for how the results are reported (e.g., whether the article reports a p-value or t-statistic),
+author characteristics such as the average number of years since PhD graduation and its square, the proportion of authors from top institutions, the proportion of female
+authors, the proportion of authors who graduated from top institutions, and whether the author was an editor of an economics journal at the time of publication. 
+  (DID_{ij}), (IV_{ij}), and (RDD_{ij}) are indicator variables for different research methods (double difference method, instrumental variable method, and discontinuity 
+regression method), respectively. By estimating these coefficients, we can understand how different research methodologies differ in terms of statistical significance 
+relative to a benchmark category (here, RCT).
+  
+
+
+  3.Analysis of test result
+
+  A.When the overall sample is restricted to z∈[1.46,2.46]:
+
+  In the most parsimonious setting (column 1), the DID and IV estimates are about 10 percentage points more likely to be statistically significant than the RCT estimates, 
+and are significant at the 1% level. This indicates that within this sample range, there may be more p-hacking phenomena in the DID and IV methods.However, there is no significant
+difference in statistical significance between the RDD estimates and the RCT estimates.
+
+  Results after controlling author and article characteristics: In column 2, after controlling for author experience, institutional background, gender ratio and other characteristics
+as well as some relevant information of the article, the estimated values ​​of DID, IV and RDD remain basically unchanged, indicating that these author and article characteristics 
+are not the main reason for the statistically significant differences between different methods, further supporting the conclusion that there are differences in p-hacking between 
+different methods themselves.
+
+  Impact of journals and years: The estimated value of the dummy variable for the "Top 5" journals is not significant even at the 20% level, indicating that p-hacking has no 
+substantial correlation with whether the journal is one of the top 5 journals. The estimated value of the year dummy variable ("Year = 2018") is also not significant, indicating 
+that the degree of p-hacking does not differ significantly between different years.
+
+  Results after adding fixed effects: After adding field fixed effects in column 3 and journal fixed effects in column 4, IV estimate is still significant at the 5% level in each
+setting, and the increase is between 7 and 8 percentage points, indicating that the IV method still shows a high probability of p-hacking after controlling for field and journal 
+factors. The statistical significance of the DID estimate at the traditional level is greatly reduced to about 5 percentage points. The RDD estimate is very small and insignificant.
+
+
+  B.Robustness test of different windows:
+  In columns 5 and 6, when the window is restricted to z∈[1.61,2.31] and z∈[1.76,2.16], respectively: IV estimate is about 9 percentage points more likely to be statistically 
+significant than the RCT estimate, and is still significant. DID estimate is positive, but not statistically significant. This shows that the Caliper Test has a certain robustness
+to different window settings.
+
+  Results for different significance thresholds:
+  For a significance threshold of 10%, IV articles are more likely to report borderline significant tests than RCT articles, with estimates ranging from 7 to 9 percentage points 
+and all significant. RDD estimates are negative, but small and not significantly different from RCT articles. DID is not significantly different from other methods.For threshold 
+of 1%, the differences between methods become small, and there is no evidence of differential clustering across methods, which may be because the motivation for p-hacking is 
+reduced after reaching such a high significance level.
+
+Summary
+The results show that the IV method shows a high probability of p-hacking under different settings and thresholds, while the RDD method is relatively robust, and the results of 
+the DID method are greatly affected by factors such as fixed effects and window settings.
