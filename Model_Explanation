@@ -1,0 +1,61 @@
+-Why use the Excess Test Statistics method
+-Principles of Excess Test Statistics
+-Analysis of test result
+*Comparison with RCT
+
+  1. Why use the Excess Test Statistics method
+
+  To evaluate the absolute level of publication bias: Previous methods may only give relative results, such as relative to randomized controlled trials (RCTs). 
+The Excess Test Statistics method can study the absolute level of publication bias by comparing the observed test statistic distribution with the counterfactual distribution, 
+and more comprehensively understand the problems in the research field.
+
+  To consider the differences between different research methods: Different research methods (such as double difference method DID, instrumental variable method IV, 
+regression discontinuity method RDD, etc.) may have different treatment methods and influencing factors in the research process. This method flexibly calibrates different 
+counterfactual t distributions for each method, and endogenizes the potential differences between methods that affect the shape, location and scale of the distribution, so as 
+to more accurately evaluate the publication bias and p-hacking situation under each method.
+
+
+  2.Principles of Excess Test Statistics
+
+  A.Construction of counterfactual distribution
+
+  -Assumptions: Assume that in the region of z > 5, the distribution of the test statistic is not affected by p-hacking or publication bias, because in this range 
+far away from the traditional significance threshold, the motivation for p-hacking can be considered zero.
+  -Distribution calibration: Calibrate a non-central t distribution for each research method, and adjust the degrees of freedom (df) and non-centrality parameter (np)
+to make the distribution fit the observed distribution as much as possible in the region of (z > 5). Specifically, for degrees of freedom from (0) to (10), calculate 
+the non-centrality parameter that minimizes the quality difference between the observed distribution and the expected distribution in the region of (z > 5), and then select
+the "best" distribution from these (10) optimized t distributions. The degrees of freedom parameter is a positive integer, and the non-centrality parameter is a positive real
+number, which is optimized with steps of (1) and (0.01) respectively.
+
+  B.Calculation of Excess Test Statistics
+  For a specific region, the difference between the observed cumulative distribution function (CDF) of the t-statistic is calculated, and then the difference between the
+corresponding CDF calculated according to the calibrated t-distribution is subtracted to obtain the excess test statistic for the region, that is, the difference between 
+the observed quality and the expected quality.
+
+  3. Analysis of test result
+
+  A.Overall fitting effect
+  As can be seen from Figure 4 and Table A24 in the online appendix, the calibrated t-distribution matches the observed distribution very well in the (5 < z < infinity) region,
+and the maximum difference in quality between the two does not exceed 0.001, which indicates that the calibration of the counterfactual distribution is successful.
+
+  B.Analysis of results in different z value intervals
+  (0 < z < 1.65) region: Except for the IV method, the quality difference between the observed values ​​and the expected values ​​of other methods is small. The IV method has a total
+quality loss of 6.3% in this region. Relative to the expected IV quality, about 16% of the insignificant IV test statistics are missing, which may suggest that the IV 
+method selectively excludes insignificant results in this insignificant region.
+  ([1.65 < z < 1.96) region: The quality difference between the observed values ​​and the expected values ​​of all methods is small, and only the IV method has excess quality, 
+indicating that the IV method may have some p-hacking behavior in this region close to the traditional significance threshold.
+  ([1.96 < z < 2.58) region: This is the region with the most significant difference in results. The IV method has a total mass excess of 4.1%, that is, 30% more
+statistically significant test statistics than expected, and its excess size is more than 5 times that of DID and RCT. DID and RCT also have a certain degree of distortion, 
+with 0.8% mass excess respectively. The RDD method performs better, and the statistically significant test statistics in this area are always less than expected, indicating
+that the RDD method is relatively less affected by p-hacking and publication bias.
+  ([2.58 < z < 5) region: The IV method has a total mass excess of 1.9%, that is, 7.8% more statistically significant test statistics than expected. The statistically
+significant test statistics of the DID, RDD and RCT methods in this area are all less than expected, less than 3.7%, 10.4% and 15.3%, respectively.
+
+
+  *Comparison with RCT
+  In the online appendix Table A23, the observed RCT distribution is used instead of the calibrated t distribution for comparison. The results show that in the non-significant area, 
+the missing amount of non-significant test statistics of DID and IV is more than twice that of RDD; in the just-significant area, the difference between the quasi-experimental method 
+and RCT distribution is small; in the two-star significant area, IV estimates that 5.4\% of the results are misassigned, which is twice that of DID and 11 times that of RDD. However,
+this simple method has problems in the [2.58 < z < 5) interval because it implicitly assumes that the effect sizes of different studies are homogeneous, so the article prefers to use 
+the method of calibrating the input distribution.
+
